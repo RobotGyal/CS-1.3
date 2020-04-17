@@ -15,21 +15,16 @@ def decode(digits, base):
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)""" 
-    decimal_number = int(digits)
-    remainder_stack = []
-
-    while decimal_number > 0:
-        remainder = decimal_number % 2
-        remainder_stack.append(remainder)
-        decimal_number = decimal_number // 2
-
-    binary_digits = []
-    while remainder_stack:
-        binary_digits.append(str(remainder_stack.pop()))
-
-    return ''.join(binary_digits)
-
-print(decode(42, 10))  # => '101010'
+    result = 0
+    for i, digit in enumerate(digits):
+        if digit.isdigit(): 
+            next_digit = int(digit) 
+        else: 
+            next_digit = ord(digit) - 97 +10
+        result += next_digit
+        if i is not len(digits) - 1: 
+            result *= base 
+    return result
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
