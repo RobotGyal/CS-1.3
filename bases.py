@@ -3,9 +3,9 @@
 import string
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
 string.digits is '0123456789'
-# string.hexdigits is '0123456789abcdefABCDEF'
-# string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
-# string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+string.hexdigits is '0123456789abcdefABCDEF'
+string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
+string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
@@ -14,21 +14,22 @@ def decode(digits, base):
     """Decode given digits in given base to number in base 10.
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
-    return: int -- integer representation of number (in base 10)"""
-    # Handle up to base 36 [0-9a-z]
-    base_10 = []
-    assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    if base == 2:
-        for i in range(len(digits)):
-            base[i] = int(base[i])
-            base_10.append(digits[i] * (2**i))
-    print(sum(base_10))
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+    return: int -- integer representation of number (in base 10)""" 
+    decimal_number = int(digits)
+    remainder_stack = []
 
+    while decimal_number > 0:
+        remainder = decimal_number % 2
+        remainder_stack.append(remainder)
+        decimal_number = decimal_number // 2
+
+    binary_digits = []
+    while remainder_stack:
+        binary_digits.append(str(remainder_stack.pop()))
+
+    return ''.join(binary_digits)
+
+print(decode(42, 10))  # => '101010'
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
