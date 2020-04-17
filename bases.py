@@ -15,6 +15,7 @@ def decode(digits, base):
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)""" 
+    assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     result = 0
     for i, digit in enumerate(digits):
         if digit.isdigit(): 
@@ -36,12 +37,8 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    remainder = number % base
+    whole = number // base 
 
 
 def convert(digits, base1, base2):
