@@ -61,6 +61,13 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
+    if base1 == 10:
+        result = encode(int(digit), base2)
+    else:
+        digit = decode(digits, base1)
+        result = encode(digit, base2)
+    # Return
+    return result
 
 
 
