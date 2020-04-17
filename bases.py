@@ -2,7 +2,7 @@
 
 import string
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
-# string.digits is '0123456789'
+string.digits is '0123456789'
 # string.hexdigits is '0123456789abcdefABCDEF'
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -16,9 +16,14 @@ def decode(digits, base):
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
+    base_10 = []
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
-    # ...
+    if base == 2:
+        for i in range(len(digits)):
+            base[i] = int(base[i])
+            base_10.append(digits[i] * (2**i))
+    print(sum(base_10))
     # TODO: Decode digits from hexadecimal (base 16)
     # ...
     # TODO: Decode digits from any base (2 up to 36)
@@ -31,6 +36,7 @@ def encode(number, base):
     base: int -- base to convert to
     return: str -- string representation of number (in given base)"""
     # Handle up to base 36 [0-9a-z]
+    # base = base[::-1]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
