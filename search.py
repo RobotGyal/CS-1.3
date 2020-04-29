@@ -9,7 +9,6 @@ def linear_search(array, item):
 
 
 def linear_search_iterative(array, item):
-    # loop over all array values until item is found
     for index, value in enumerate(array):
         if item == value:
             return index  # found
@@ -32,10 +31,23 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
-    # TODO: implement binary search iteratively here
-    pass
-    # once implemented, change binary_search to call binary_search_iterative
-    # to verify that your iterative implementation passes all tests
+    '''
+    variables:
+    loc = location
+    end = end of array
+    mid = current middle point
+    '''
+    loc=0
+    end=len(array)-1
+    while loc <= r: 
+        mid = loc + (end - loc)//2; 
+        if array[mid] == item: 
+            return mid
+        elif array[mid] < item: 
+            loc = mid + 1
+        else: 
+            end = mid - 1
+    return None
 
 
 def binary_search_recursive(array, item, left=None, right=None):
