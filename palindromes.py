@@ -20,7 +20,7 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     text = re.sub('[^A-Za-z0-9]+', '', text).lower()
-    reverse_text = text[::-1]
+    reverse_text = text[::-1] 
     if text == reverse_text:
         return True
     return False
